@@ -6,16 +6,43 @@ import neutral from '../assets/Neutral.svg';
 import good from '../assets/Good.svg';
 import verygood from '../assets/Verygood.svg';
 import { ImageInput } from './ImageInput';
-import {Formik, Field, ErrorMessage} from 'formik'
+import {Formik, Field, ErrorMessage, Form} from 'formik'
+
+interface initialValues {
+    name: string,
+    contact: string,
+    email: string,
+    comment: string,
+    reaction: number,
+}
 
 export const FeedbackForm: React.FC = () => {
+
+    const initialValues: initialValues = {
+        name: '',
+        contact: '',
+        email: '',
+        comment: '',
+        reaction: 3,
+    }
+
+    const handleSubmit = (data: initialValues) => {
+        console.log(data);
+        
+    }
+
   return (
     <div className="bg-white p-8 md:p-12 shadow-md rounded-lg max-w-4xl mx-auto">
       <h2 className="pb-4 text-xl font-normal text-custom-blue ">
         Please Provide Your Feedback
       </h2>
-      
-      <form>
+      <Formik
+        onSubmit={handleSubmit}
+        initialValues={initialValues}
+      >
+
+
+      <Form>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <InputFields type="text" placeholder="John Doe" label="Name" />
           <InputFields type="tel" placeholder="+91 00000 00000" label="Contact Number" />
@@ -50,7 +77,8 @@ export const FeedbackForm: React.FC = () => {
             SUBMIT
           </button>
         </div>
-      </form>
+      </Form>
+          </Formik>
     </div>
   );
 };

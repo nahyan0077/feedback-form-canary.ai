@@ -6,11 +6,13 @@ import neutral from '../assets/Neutral.svg';
 import good from '../assets/Good.svg';
 import verygood from '../assets/Verygood.svg';
 import { ImageInput } from './ImageInput';
-import {Formik, Field, ErrorMessage, Form} from 'formik'
+import {Formik, Field, Form, ErrorMessage} from 'formik'
+import { FormValidation } from '../utils/FormValidation';
+import {toast} from 'sonner'
 
 interface initialValues {
     name: string,
-    contact: string,
+    phone: string,
     email: string,
     comment: string,
     reaction: number,
@@ -20,7 +22,7 @@ export const FeedbackForm: React.FC = () => {
 
     const initialValues: initialValues = {
         name: '',
-        contact: '',
+        phone: '',
         email: '',
         comment: '',
         reaction: 3,
@@ -28,7 +30,7 @@ export const FeedbackForm: React.FC = () => {
 
     const handleSubmit = (data: initialValues) => {
         console.log(data);
-        
+        toast.success('New feedback added successfully')
     }
 
   return (
@@ -39,46 +41,47 @@ export const FeedbackForm: React.FC = () => {
       <Formik
         onSubmit={handleSubmit}
         initialValues={initialValues}
+        validationSchema={FormValidation}
       >
+        <Form>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <InputFields type="text" placeholder="John Doe" label="Name" name='name' />
+            <InputFields type="tel" placeholder="+91 00000 00000" label="Contact Number" name='phone' />
+            <InputFields type="email" placeholder="xyz123@gmail.com" label="Email Address" name='email' />
+            </div>
 
+            <h2 className="pt-8 pb-4 text-lg font-bold text-custom-blue ">
+            Share your experience in scaling
+            </h2>
 
-      <Form>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <InputFields type="text" placeholder="John Doe" label="Name" />
-          <InputFields type="tel" placeholder="+91 00000 00000" label="Contact Number" />
-          <InputFields type="email" placeholder="xyz123@gmail.com" label="Email Address" />
-        </div>
+            <div className="flex justify-between items-center gap-4 p-4 flex-wrap">
+            <ImageInput image={worst} alt="Worst" />
+            <ImageInput image={fine} alt="Not Good" />
+            <ImageInput image={neutral} alt="Fine" />
+            <ImageInput image={good} alt="Looks Good" />
+            <ImageInput image={verygood} alt="Very Good" />
+            </div>
 
-        <h2 className="pt-8 pb-4 text-lg font-bold text-custom-blue ">
-          Share your experience in scaling
-        </h2>
+            <div className="flex flex-col gap-4 pt-4">
+            <Field as='input' type="range" id="experience-slider" name='reaction' min={1} max={5} className="w-full h-2 rounded-lg bg-gray-300" />
 
-        <div className="flex justify-between items-center gap-4 p-4 flex-wrap">
-          <ImageInput image={worst} alt="Worst" />
-          <ImageInput image={fine} alt="Not Good" />
-          <ImageInput image={neutral} alt="Fine" />
-          <ImageInput image={good} alt="Looks Good" />
-          <ImageInput image={verygood} alt="Very Good" />
-        </div>
+            <Field
+                as="textarea"
+                name="comment"
+                className="w-full h-24 rounded-lg placeholder:px-3 py-2 focus:outline-none border-2 border-gray-300 focus:border-green-900"
+                placeholder="Add your comments..."
+            />
+            <ErrorMessage name="comment" component="div" className="text-red-500 text-xs p-1"  />
 
-        <div className="flex flex-col gap-4 pt-4">
-          <input type="range" id="experience-slider" className="w-full h-2 rounded-lg bg-gray-300" />
-
-          <textarea
-            name="comments"
-            className="w-full h-24 rounded-lg placeholder:px-3 py-2 focus:outline-none border-2 border-gray-300 focus:border-green-900"
-            placeholder="Add your comments..."
-          />
-
-          <button
-            type="submit"
-            className="p-4 bg-custom-teal w-full rounded-lg shadow-md text-white text-lg font-semibold hover:bg-teal-600 transition ease-in-out placeholder:p-2 "
-          >
-            SUBMIT
-          </button>
-        </div>
-      </Form>
-          </Formik>
+            <button
+                type="submit"
+                className="p-4 bg-custom-teal w-full rounded-lg shadow-md text-white text-lg font-semibold hover:bg-teal-600 transition ease-in-out placeholder:p-2 "
+            >
+                SUBMIT
+            </button>
+            </div>
+        </Form>
+        </Formik>
     </div>
   );
 };

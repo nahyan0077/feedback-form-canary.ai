@@ -6,7 +6,7 @@ import neutral from '../assets/Neutral.svg';
 import good from '../assets/Good.svg';
 import verygood from '../assets/Verygood.svg';
 import { ImageInput } from './ImageInput';
-import {Formik, Field, Form, ErrorMessage} from 'formik'
+import {Formik, Field, Form, ErrorMessage, FormikHelpers} from 'formik'
 import { FormValidation } from '../utils/FormValidation';
 import {toast} from 'sonner'
 
@@ -18,7 +18,12 @@ interface initialValues {
     reaction: number,
 }
 
-export const FeedbackForm: React.FC = () => {
+interface FeedbackFormProps {
+    handleAddFeedback: (feedback: initialValues) => boolean;
+}
+
+
+export const FeedbackForm: React.FC <FeedbackFormProps> = ({handleAddFeedback}) => {
 
     const initialValues: initialValues = {
         name: '',
@@ -28,9 +33,20 @@ export const FeedbackForm: React.FC = () => {
         reaction: 3,
     }
 
-    const handleSubmit = (data: initialValues) => {
-        console.log(data);
-        toast.success('New feedback added successfully')
+    const handleSubmit = (data: initialValues, { resetForm }: FormikHelpers<initialValues>) => {
+        try {
+            console.log(data);
+            const result: boolean = handleAddFeedback(data)
+            if(result){
+                toast.success('New feedback added successfully')
+                resetForm()
+            }else{
+                toast.error("This users feedback already exists")
+            }
+            
+        } catch (error: any) {
+            toast.error(error)
+        }
     }
 
   return (

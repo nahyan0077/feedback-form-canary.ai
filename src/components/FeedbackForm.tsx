@@ -5,10 +5,14 @@ import fine from '../assets/Fine.svg';
 import neutral from '../assets/Neutral.svg';
 import good from '../assets/Good.svg';
 import verygood from '../assets/Verygood.svg';
+import { ImageInput } from './ImageInput';
 
 export const FeedbackForm: React.FC = () => {
+
+
+    
   return (
-    <div className="bg-white p-6 shadow-md rounded-lg ">
+    <div className="bg-white p-6 shadow-md rounded-lg  ">
       <h2 className="pb-4 text-lg text-blue-600 font-normal">Please Provide your Feedback</h2>
       
       <form>
@@ -21,11 +25,7 @@ export const FeedbackForm: React.FC = () => {
         <h2 className="pt-6 pb-2 py-6 text-blue-600 font-bold text-md">Share your experience in scaling</h2>
 
         <div className="flex justify-around items-center gap-4 pt-2">
-          <img src={worst} alt="worst" className="h-16 w-16 object-contain" />
-          <img src={fine} alt="fine" className="h-16 w-16 object-contain" />
-          <img src={neutral} alt="neutral" className="h-16 w-16 object-contain" />
-          <img src={good} alt="good" className="h-16 w-16 object-contain" />
-          <img src={verygood} alt="verygood" className="h-16 w-16 object-contain" />
+          <ImageInput image={worst} alt={"worst"}  />
         </div>
 
         <div className="flex flex-col gap-4 pt-4">

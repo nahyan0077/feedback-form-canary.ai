@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FeedbackForm } from "../components/FeedbackForm";
 import { SubmittedFeedbacks } from "../components/SubmittedFeedbacks";
-import { toast } from "sonner";
+
 
 interface Feedback {
     name: string;

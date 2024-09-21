@@ -2,3 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+input[type="range"] {
+    appearance: none;
+    width: 100%;
+    height: 8px;
+    border-radius: 5px;
+    background: linear-gradient(to right, #4caf50 var(--percent), #ddd var(--percent));
+    outline: none;
+    transition: background 450ms ease-in;
+  }
+  
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background-color: #A3CECC;
+    border: 3px solid #5C8F8A;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background-color: #A3CECC;
+    border: 3px solid #5C8F8A;
+    border-radius: 50%;
+    cursor: pointer;
+  }

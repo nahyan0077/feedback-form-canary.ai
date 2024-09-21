@@ -30,7 +30,7 @@ export const FeedbackForm: React.FC <FeedbackFormProps> = ({handleAddFeedback}) 
         phone: '',
         email: '',
         comment: '',
-        reaction: 3,
+        reaction: 0,
     }
 
     const handleSubmit = (data: initialValues, { resetForm }: FormikHelpers<initialValues>) => {
@@ -48,6 +48,22 @@ export const FeedbackForm: React.FC <FeedbackFormProps> = ({handleAddFeedback}) 
             toast.error(error)
         }
     }
+
+    const handleSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const slider = event.target;
+        const min = parseInt(slider.min);
+        const max = parseInt(slider.max);
+        const value = parseInt(slider.value);
+      
+        // Calculate the percentage
+        const percentage = ((value - min) / (max - min)) * 100;
+      
+        // Apply the background gradient
+        slider.style.background = `linear-gradient(to right, #2A5853 ${percentage}%, #C3E6E3 ${percentage}%)`;
+      };
+      
+      
+      
 
   return (
     <div className="bg-white p-8 md:p-12 shadow-md rounded-lg max-w-4xl mx-auto">
@@ -79,7 +95,7 @@ export const FeedbackForm: React.FC <FeedbackFormProps> = ({handleAddFeedback}) 
             </div>
 
             <div className="flex flex-col gap-4 pt-4">
-            <Field as='input' type="range" id="experience-slider" name='reaction' min={1} max={5} className="w-full h-2 rounded-lg bg-gray-300" />
+            <Field as='input' type="range" id="experience-slider" name='reaction' min={1} max={5} className="h-2 rounded-lg mb-6 " onInput={handleSliderChange} />
 
             <Field
                 as="textarea"

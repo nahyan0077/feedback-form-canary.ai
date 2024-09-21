@@ -22,11 +22,11 @@ const getReactionImage = (reaction: number) => {
     case 1:
       return [worst, 'Worst'];
     case 2:
-      return [fine, 'Fine'];
+      return [fine, 'Not Good'];
     case 3:
-      return [neutral, 'Neutral'];
+      return [neutral, 'Fine'];
     case 4:
-      return [good, "Good"];
+      return [good, "Looks Good"];
     case 5:
       return [verygood, 'Very good'];
     default:
@@ -51,11 +51,11 @@ export const SubmittedFeedbacks: React.FC<SubmittedFeedbacksProps> = ({ feedback
 
   return (
     <div className="p-4">
-      <h2 className="pb-4 px-2 font-bold text-lg text-custom-blue">Submitted Feedbacks</h2>
+      <h2 className="pb-4 px-2 font-bold text-lg text-custom-blue ">Submitted Feedbacks</h2>
 
       <div className="space-y-4">
         {selectedFeedbacks.length === 0 ? (
-          <p>No feedback submitted yet.</p>
+          <p>No feedbacks submitted yet.</p>
         ) : (
           selectedFeedbacks.map((feedback, index) => (
             <div key={index} className="bg-white p-4 rounded-lg shadow-sm flex justify-between items-center">

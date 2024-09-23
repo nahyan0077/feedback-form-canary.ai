@@ -58,7 +58,7 @@ export const SubmittedFeedbacks: React.FC<SubmittedFeedbacksProps> = ({ feedback
           <p>No feedbacks submitted yet.</p>
         ) : (
           selectedFeedbacks.map((feedback, index) => (
-            <div key={index} className="bg-white p-4 rounded-lg shadow-sm flex justify-between items-center">
+            <div key={index} className="bg-white p-4 rounded-lg shadow-md flex justify-between items-center">
               <div>
                 <h3 className="text-lg font-semibold text-custom-blue">
                   {feedback.comment}

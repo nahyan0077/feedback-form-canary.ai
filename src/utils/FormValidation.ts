@@ -20,7 +20,7 @@ export const FormValidation = Yup.object({
 
   comment: Yup.string()
     .trim() 
-    .required('Please provide your feedback')
+    .required('Please provide your comment')
     .min(10, 'Comment must be at least 10 characters')
     .max(300, 'Comment cannot exceed 300 characters'),
 });

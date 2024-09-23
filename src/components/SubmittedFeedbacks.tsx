@@ -55,10 +55,13 @@ export const SubmittedFeedbacks: React.FC<SubmittedFeedbacksProps> = ({ feedback
 
       <div className="space-y-4">
         {selectedFeedbacks.length === 0 ? (
-          <p>No feedbacks submitted yet.</p>
+          <div className='px-5 italic' >
+            <p>No feedbacks submitted yet...</p>
+
+          </div>
         ) : (
           selectedFeedbacks.map((feedback, index) => (
-            <div key={index} className="bg-white p-4 rounded-lg shadow-md flex justify-between items-center">
+            <div key={index} className="bg-white p-4 rounded-lg shadow-md flex justify-between items-center hover:scale-105 transition ease-in-out">
               <div>
                 <h3 className="text-lg font-semibold text-custom-blue">
                   {feedback.comment}
@@ -67,7 +70,7 @@ export const SubmittedFeedbacks: React.FC<SubmittedFeedbacksProps> = ({ feedback
               </div>
               <div className='flex flex-col items-center'>
                 <img src={getReactionImage(feedback.reaction)[0]} alt="reaction" className="h-10 w-10" />
-                <h2 className='font-bold text-custom-green text-center'>{getReactionImage(feedback.reaction)[1]}</h2>
+                <h2 className='font-bold text-green-600 text-center'>{getReactionImage(feedback.reaction)[1]}</h2>
               </div>
             </div>
           ))

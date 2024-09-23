@@ -74,8 +74,8 @@ export const FeedbackForm: React.FC<FeedbackFormProps> = ({ handleAddFeedback })
       >
         {({ values }) => (
           <Form>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <InputFields type="text" placeholder="John Doe" label="Name" name="name" />
+            <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 ${values}`}  >
+              <InputFields type="text" placeholder="John Doe" label="Name" name="name"  />
               <InputFields type="tel" placeholder="+91 00000 00000" label="Contact Number" name="phone" />
               <InputFields type="email" placeholder="xyz123@gmail.com" label="Email Address" name="email" />
             </div>

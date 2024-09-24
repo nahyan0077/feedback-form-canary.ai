@@ -110,7 +110,7 @@ export const FeedbackForm: React.FC<FeedbackFormProps> = ({ handleAddFeedback })
                     ref={sliderRef}
                     min={1}
                     max={5}
-                    className="h-2 rounded-lg mb-6"
+                    className="h-2 rounded-lg mb-6 hover:cursor-pointer"
                     onChange={(e) => {
                       field.onChange(e);
                       updateSliderBackground(parseInt(e.target.value));

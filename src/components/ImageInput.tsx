@@ -3,7 +3,7 @@ import React from 'react';
 interface ImageInputProps {
   image: string;
   alt: string;
-  onClick?: ((number: number) => void | undefined) | undefined
+  onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
 export const ImageInput: React.FC<ImageInputProps> = ({ image, alt, onClick }) => {

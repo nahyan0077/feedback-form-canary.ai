@@ -39,6 +39,7 @@ export const FeedbackForm: React.FC<FeedbackFormProps> = ({ handleAddFeedback })
       const result: boolean = handleAddFeedback(data);
       if (result) {
         toast.success('New feedback added successfully');
+        updateSliderBackground(initialValues.reaction);
         resetForm();
       } else {
         toast.error("This user's feedback already exists");
@@ -61,6 +62,14 @@ export const FeedbackForm: React.FC<FeedbackFormProps> = ({ handleAddFeedback })
     // Set initial background on component mount
     updateSliderBackground(initialValues.reaction);
   }, []);
+
+  const handleImageClick = (num: number) => {
+
+      if (sliderRef.current) {
+        sliderRef.current.value = num.toString()
+      }
+      updateSliderBackground(num)
+  }
 
   return (
     <div className="bg-white p-8 md:p-12 shadow-xl rounded-lg max-w-4xl mx-auto">
@@ -85,11 +94,11 @@ export const FeedbackForm: React.FC<FeedbackFormProps> = ({ handleAddFeedback })
             </h2>
 
             <div className="flex justify-between items-center justify-items-center gap-4 p-4 flex-wrap">
-              <ImageInput image={worst} alt="Worst" />
-              <ImageInput image={fine} alt="Not Good" />
-              <ImageInput image={neutral} alt="Fine" />
-              <ImageInput image={good} alt="Looks Good" />
-              <ImageInput image={verygood} alt="Very Good" />
+              <ImageInput image={worst} alt="Worst" onClick={()=>handleImageClick(1)}/>
+              <ImageInput image={fine} alt="Not Good" onClick={()=>handleImageClick(2)} />
+              <ImageInput image={neutral} alt="Fine" onClick={()=>handleImageClick(3)} />
+              <ImageInput image={good} alt="Looks Good" onClick={()=>handleImageClick(4)} />
+              <ImageInput image={verygood} alt="Very Good" onClick={()=>handleImageClick(5)} />
             </div>
 
             <div className="flex flex-col gap-4 pt-4">
